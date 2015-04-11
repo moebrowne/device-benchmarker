@@ -11,6 +11,13 @@
 # Define variables
 TEST="$1"
 DEVICES="${@: 2}"
+TIMESTAMP="$(date +"%s")"
+LOG_BASE_DIR="/home/pi/benchmark/logs/$TIMESTAMP" 
+
+# Create the logging directory
+mkdir -p "$LOG_BASE_DIR"
+
+echo "Logs will be written to: $LOG_BASE_DIR"
 
 # Mount all the devices
 for device in $DEVICES; do
