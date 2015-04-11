@@ -1,14 +1,7 @@
 
-
-#Mount the USB drives
-function mount-devices {
-	mount -t ext4 -o defaults /dev/sda1 /media/black
-	mount -t ext4 -o defaults /dev/sdb1 /media/orange
-}
-
 function mount-device {
 	# Check if the device is already mounted
-	if [ $(mount | grep -c "$1") != 1 ]; then
+	if [ $(mount | grep -c "$1") = 1 ]; then
 		echo "Device $1 is already mounted. Moving on..."
 		exit
 	fi
@@ -22,7 +15,7 @@ function mount-device {
 	# Check if a mount directory exists for this device
 	if [ ! -d "$DEVICE_MOUNTPOINT" ]; then
 		# Create the mount point
-		echo "Creating the mount point directory"
+		echo "Creating the mount point $DEVICE_MOUNTPOINT"
 		mkdir -p "$DEVICE_MOUNTPOINT"
 	fi
 	
