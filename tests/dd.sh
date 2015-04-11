@@ -77,8 +77,10 @@ function test-dd-read {
                 # Set the log file
                 LOG_FILE="$LOG_DIR/$device_name"
                 
-                # Run DD write
-                echo "$device: DD read test started"
-                dd bs=$BLOCK_SIZE of=/dev/null if=$device_mountpoint/$BLOCK_DEST count=$BLOCK_COUNT &> "$LOG_FILE" &
+                # Run DD read
+		dd bs=$BLOCK_SIZE if=$device_mountpoint/$BLOCK_DEST count=$BLOCK_COUNT 2> /dev/null | pv -pabeWcN "$device" -s "$BLOCK_DATA" | dd bs=$BLOCK_SIZE of=/dev/null &> "$LOG_FILE" &
         done
+	
+	wait
+	echo "TESTS COMPLETE"
 }
