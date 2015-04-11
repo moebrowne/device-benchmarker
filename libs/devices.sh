@@ -24,3 +24,11 @@ function device-mount {
 	mount $1 $DEVICE_MOUNTPOINT
 	
 }
+
+function device-mountpoint {
+	# Get the device name
+        DEVICE_NAME=$(basename "$1")
+
+        # Return the mount point directory
+        return "/media/$DEVICE_NAME"
+}
