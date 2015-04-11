@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Librarys
+# Libraries
 . /home/pi/benchmark/libs/cache.sh
 . /home/pi/benchmark/libs/devices.sh
 . /home/pi/benchmark/tests/dd.sh
