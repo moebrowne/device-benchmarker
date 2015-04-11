@@ -10,7 +10,7 @@ function test-dd-init {
 	BLOCK_DEST="zeros"
 	BLOCK_DATA="$((${BLOCK_SIZE::-1}*$BLOCK_COUNT))${BLOCK_SIZE: -1}"
 	
-	echo "Running DD test"
+	echo "Initializing DD test"
 	echo "- Block Size: $BLOCK_SIZE"
 	echo "- Block Count: $BLOCK_COUNT"
 	echo "- Block Source: $BLOCK_SOURCE"
