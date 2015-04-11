@@ -67,6 +67,9 @@ function test-dd-read {
 	# Wait for all the test files to be written before continuing...
 	wait
 	
+	# Clear the cache so we dont read from the cache
+	cache-clear
+	
 	for device in "$@"; do
                 # Get the devices name
                 device_name=$(basename "$device")
