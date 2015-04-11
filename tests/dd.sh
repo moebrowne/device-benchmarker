@@ -4,8 +4,7 @@ function test-dd-init {
 	# $@	: list of devices to run this test on
 	
 	# Config
-	BLOCK_SIZE="1M"
-	BLOCK_COUNT="512"
+	BLOCK_SIZE="128M"
 	BLOCK_SOURCE="/dev/zero"
 	BLOCK_DEST="zeros"
 	
@@ -35,9 +34,12 @@ function test-dd-write {
 		LOG_FILE="$LOG_DIR/$device_name"
                 
                 # Run DD write
-                echo "$device: DD write test started"
-                dd bs=$BLOCK_SIZE if=$BLOCK_SOURCE of=$device_mountpoint/$BLOCK_DEST count=$BLOCK_COUNT &> "$LOG_FILE" &
+                dd bs=$BLOCK_SIZE if=$BLOCK_SOURCE count=1 2> /dev/null | pv -pabeWcN "$device" -s "$BLOCK_SIZE" | dd of=$device_mountpoint/$BLOCK_DEST &> "$LOG_FILE" &
+
         done
+	
+	wait
+	echo "TESTS COMPLETE"
 
 }
 
