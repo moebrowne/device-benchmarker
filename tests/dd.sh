@@ -4,14 +4,17 @@ function test-dd-init {
 	# $@	: list of devices to run this test on
 	
 	# Config
-	BLOCK_SIZE="128M"
+	BLOCK_SIZE="128K"
+	BLOCK_COUNT="3200"
 	BLOCK_SOURCE="/dev/zero"
 	BLOCK_DEST="zeros"
+	BLOCK_DATA="$((${BLOCK_SIZE::-1}*$BLOCK_COUNT))${BLOCK_SIZE: -1}"
 	
 	echo "Running DD test"
 	echo "- Block Size: $BLOCK_SIZE"
 	echo "- Block Count: $BLOCK_COUNT"
 	echo "- Block Source: $BLOCK_SOURCE"
+	echo "- Data Total: $BLOCK_DATA"
 	
 }
 
@@ -32,10 +35,10 @@ function test-dd-write {
 
 		# Set the log file
 		LOG_FILE="$LOG_DIR/$device_name"
-                
+		
                 # Run DD write
-                dd bs=$BLOCK_SIZE if=$BLOCK_SOURCE count=1 2> /dev/null | pv -pabeWcN "$device" -s "$BLOCK_SIZE" | dd of=$device_mountpoint/$BLOCK_DEST &> "$LOG_FILE" &
-
+		dd bs=$BLOCK_SIZE if=$BLOCK_SOURCE count=$BLOCK_COUNT 2> /dev/null | pv -pabeWcN "$device" -s "$BLOCK_DATA" | dd bs=$BLOCK_SIZE of=$device_mountpoint/$BLOCK_DEST conv=fdatasync &> "$LOG_FILE" &
+                
         done
 	
 	wait
