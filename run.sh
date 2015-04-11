@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Librarys
-. /home/pi/benchmark/libs/mount-devices.sh
+. /home/pi/benchmark/libs/devices.sh
 
 # Parameters
 # $1		: Type of test to run
@@ -13,7 +13,7 @@ DEVICES="${@: 2}"
 
 # Mount all the devices
 for device in "$DEVICES"; do
-	mount-device "$device"
+	device-mount "$device"
 done
 
 # Clear caches and buffers

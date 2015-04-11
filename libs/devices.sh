@@ -1,5 +1,5 @@
 
-function mount-device {
+function device-mount {
 	# Check if the device is already mounted
 	if [ $(mount | grep -c "$1") = 1 ]; then
 		echo "Device $1 is already mounted. Moving on..."
