@@ -29,6 +29,11 @@ echo "Clearning caches and buffers"
 sync && sync
 echo 3 > /proc/sys/vm/drop_caches
 
-if [ "$TEST" == "dd" ]; then
-	test-dd $DEVICES
+
+if [ "$TEST" == "dd-read" ]; then
+	test-dd-read $DEVICES
+fi
+
+if [ "$TEST" == "dd-write" ]; then
+	test-dd-write $DEVICES
 fi
