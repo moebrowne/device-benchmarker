@@ -55,15 +55,17 @@ function test-dd-read {
 	mkdir -p "$LOG_DIR"
 	
 	# Write a test file to each of the devices to read from
+	echo "Writing test files..."
 	for device in "$@"; do
                 # Get the devices mountpoint
                 device_mountpoint=$(device-mountpoint "$device")
 		
-		echo "$device: Writing test file to read from"
-		
 		# Write the file
-		dd bs=$BLOCK_SIZE if=$BLOCK_SOURCE of=$device_mountpoint/$BLOCK_DEST count=$BLOCK_COUNT &> /dev/null
+		dd bs=$BLOCK_SIZE if=$BLOCK_SOURCE of=$device_mountpoint/$BLOCK_DEST count=$BLOCK_COUNT &> /dev/null  &
 	done
+	
+	# Wait for all the test files to be written before continuing...
+	wait
 	
 	for device in "$@"; do
                 # Get the devices name
