@@ -10,7 +10,7 @@ function test-dd-init {
 	BLOCK_DEST="zeros"
 	
 	echo "Running DD test"
-	echo "- Block Size: $BLOCK_SIZE MB"
+	echo "- Block Size: $BLOCK_SIZE"
 	echo "- Block Count: $BLOCK_COUNT"
 	echo "- Block Source: $BLOCK_SOURCE"
 	
