@@ -7,8 +7,12 @@
 # $1		: Type of test to run
 # ${N+1}	: Devices to run the test on
 
+# Define variables
+TEST="$1"
+DEVICES="${@: 2}"
+
 # Mount all the devices
-for device in "${@: 2}"; do
+for device in "$DEVICES"; do
 	mount-device "$device"
 done
 
