@@ -30,5 +30,5 @@ function device-mountpoint {
         DEVICE_NAME=$(basename "$1")
 
         # Return the mount point directory
-        return "/media/$DEVICE_NAME"
+        echo "/media/$DEVICE_NAME"
 }
