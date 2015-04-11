@@ -1,6 +1,7 @@
 #!/bin/bash
 
 # Librarys
+. /home/pi/benchmark/libs/cache.sh
 . /home/pi/benchmark/libs/devices.sh
 . /home/pi/benchmark/tests/dd.sh
 
@@ -26,9 +27,7 @@ done
 
 # Clear caches and buffers
 echo "Clearning caches and buffers"
-sync && sync
-echo 3 > /proc/sys/vm/drop_caches
-
+cache-clear
 
 if [ "$TEST" == "dd-read" ]; then
 	test-dd-read $DEVICES
