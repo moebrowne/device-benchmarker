@@ -61,7 +61,7 @@ function test-dd-read {
                 device_mountpoint=$(device-mountpoint "$device")
 		
 		# Write the file
-		dd bs=$BLOCK_SIZE if=$BLOCK_SOURCE of=$device_mountpoint/$BLOCK_DEST count=$BLOCK_COUNT &> /dev/null  &
+		dd bs=$BLOCK_SIZE if=$BLOCK_SOURCE of=$device_mountpoint/$BLOCK_DEST count=$BLOCK_COUNT conv=fdatasync &> /dev/null  &
 	done
 	
 	# Wait for all the test files to be written before continuing...
