@@ -2,7 +2,7 @@
 function device-mount {
 	# Check if the device is already mounted
 	if [ $(mount | grep -c "$1") = 1 ]; then
-		echo "Device $1 is already mounted. Moving on..."
+		echo "$1: Already mounted"
 		return 
 	fi
 	
@@ -15,12 +15,12 @@ function device-mount {
 	# Check if a mount directory exists for this device
 	if [ ! -d "$DEVICE_MOUNTPOINT" ]; then
 		# Create the mount point
-		echo "Creating the mount point $DEVICE_MOUNTPOINT"
+		echo "$i: Creating mount point $DEVICE_MOUNTPOINT"
 		mkdir -p "$DEVICE_MOUNTPOINT"
 	fi
 	
 	# Mount the device
-	echo "Mounting $1 to $DEVICE_MOUNTPOINT"
+	echo "$1: Mounting to $DEVICE_MOUNTPOINT"
 	mount $1 $DEVICE_MOUNTPOINT
 	
 }
