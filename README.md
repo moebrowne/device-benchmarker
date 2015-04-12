@@ -24,6 +24,16 @@ Uses dd to write a number of bytes from /dev/zero to all specified devices
 
 Uses dd to first write a test file to all specified devices then read the file(s) back to `/dev/null`
 
+## Dependencies
+
+There is only a single package required which is non-standard; pv. It's easily installed whatever Distro you are using:
+
+    # Ubuntu
+    apt-get install pv
+    
+    # RHEL / CentOS
+    yum install pv
+
 ## Warning
 
 This tool will indiscriminately write to the devices specified, double check you are using the correct devices!
