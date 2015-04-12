@@ -10,7 +10,7 @@ function test-dd-init {
 	BLOCK_DEST="zeros"
 	BLOCK_DATA="$((${BLOCK_SIZE::-1}*$BLOCK_COUNT))${BLOCK_SIZE: -1}"
 	
-	echo "Initializing DD test"
+	echo "Initializing DD benchmark"
 	echo "- Block Size: $BLOCK_SIZE"
 	echo "- Block Count: $BLOCK_COUNT"
 	echo "- Block Source: $BLOCK_SOURCE"
@@ -25,6 +25,8 @@ function test-dd-write {
         # Setup logging
         LOG_DIR="$LOG_BASE_DIR/dd/write"
 	mkdir -p "$LOG_DIR"
+	
+	echo "Running DD write benchmark"
 	
         for device in "$@"; do
                 # Get the devices name
@@ -42,7 +44,7 @@ function test-dd-write {
         done
 	
 	wait
-	echo "TESTS COMPLETE"
+	echo "DD write benchmark complete!"
 
 }
 
@@ -70,6 +72,8 @@ function test-dd-read {
 	# Clear the cache so we dont read from the cache
 	cache-clear
 	
+	echo "Running DD read benchmark"
+	
 	for device in "$@"; do
                 # Get the devices name
                 device_name=$(basename "$device")
@@ -85,5 +89,5 @@ function test-dd-read {
         done
 	
 	wait
-	echo "TESTS COMPLETE"
+	echo "DD read benchmark complete!"
 }
