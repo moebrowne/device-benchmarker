@@ -5,6 +5,9 @@ Potential features/improvements:
 - If there isn't enough room on the device offer to empty/format it
 - If a device fails to mount throw an error and exit
 - Implement a 'full disk' feature where instead of writing/reading so many bytes just the whole disk
+- Write all output to a log file
+- Add a progress bar when writing test files in test-dd-read
+- Check any non-standard packages have been installed
 
 Tests
 
