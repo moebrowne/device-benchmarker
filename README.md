@@ -4,7 +4,7 @@ Using this tool you can benchmark the maximum read write speeds connected block 
 
 ## Usage
 
-The bench marker uses the following usage:
+The bench marker is called using this format:
 
     ./run.sh {test-name} /dev/device1 /dev/device2 /dev/deviceN
 
