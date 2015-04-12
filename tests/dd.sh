@@ -46,6 +46,9 @@ function test-dd-write {
 	wait
 	echo "DD write benchmark complete!"
 
+	# Show the results
+	test-dd-results
+
 }
 
 function test-dd-read {
@@ -90,4 +93,14 @@ function test-dd-read {
 	
 	wait
 	echo "DD read benchmark complete!"
+	
+	# Show the results
+	test-dd-results
+}
+
+function test-dd-results {
+	
+	# Read the output of the logs
+	sh -c "cd $LOG_DIR && grep -rHoP \"[0-9\.]+ MB/s\" *"
+	
 }
