@@ -1,9 +1,17 @@
 #!/bin/bash
 
+# Get the source directory
+DIR="${BASH_SOURCE%/*}"
+if [[ ! -d "$DIR" ]]; then DIR="$PWD"; fi
+
+# Set the library root path
+LIBRARY_PATH_ROOT="$DIR/libs"
+TEST_PATH_ROOT="$DIR/tests"
+
 # Libraries
-. /home/pi/benchmark/libs/cache.sh
-. /home/pi/benchmark/libs/devices.sh
-. /home/pi/benchmark/tests/dd.sh
+. "$LIBRARY_PATH_ROOT/cache.sh"
+. "$LIBRARY_PATH_ROOT/devices.sh"
+. "$TEST_PATH_ROOT/dd.sh"
 
 # Parameters
 # $1		: Type of test to run
