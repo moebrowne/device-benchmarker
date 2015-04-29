@@ -11,7 +11,6 @@ TEST_PATH_ROOT="$DIR/tests"
 # Libraries
 . "$LIBRARY_PATH_ROOT/cache.sh"
 . "$LIBRARY_PATH_ROOT/devices.sh"
-. "$TEST_PATH_ROOT/dd.sh"
 
 # Parameters
 # $1		: Type of test to run
@@ -37,10 +36,16 @@ done
 echo "Clearning caches and buffers"
 cache-clear
 
-if [ "$TEST" == "dd-read" ]; then
-	test-dd-read $DEVICES
-fi
+if [ "$TEST" == "dd-read" ] || [ "$TEST" == "dd-write" ]; then
 
-if [ "$TEST" == "dd-write" ]; then
-	test-dd-write $DEVICES
+	# Include the library for this test
+	. "$TEST_PATH_ROOT/dd.sh"
+
+	if [ "$TEST" == "dd-read" ]; then
+		test-dd-read $DEVICES
+	fi
+
+	if [ "$TEST" == "dd-write" ]; then
+		test-dd-write $DEVICES
+	fi
 fi
