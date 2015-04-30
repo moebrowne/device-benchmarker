@@ -2,6 +2,9 @@
 function test-dd-init {
 	# Parameters
 	# $@	: list of devices to run this test on
+
+	# Check required non standard packages are avaliable
+	command_exists_exit "pv"
 	
 	# Config
 	BLOCK_SIZE="128K"

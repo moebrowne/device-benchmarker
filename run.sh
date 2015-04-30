@@ -11,6 +11,7 @@ TEST_PATH_ROOT="$DIR/tests"
 # Libraries
 . "$LIBRARY_PATH_ROOT/cache.sh"
 . "$LIBRARY_PATH_ROOT/devices.sh"
+. "$LIBRARY_PATH_ROOT/generic.sh"
 
 # Parameters
 # $1		: Type of test to run
